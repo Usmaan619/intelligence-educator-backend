@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const passport = require("passport");
 const rootRoutes = require("./app/src/routes/rootRoutes");
 const { connectToDatabase } = require("./app/config/db");
+const Customer = require("./app/src/models/customerModel");
 
 const app = express();
 app.use(helmet());
@@ -27,6 +28,10 @@ app.use("/", (req, res) => {
 async function startServer() {
   try {
     await connectToDatabase();
+
+    // Sync the Customer model (or all models)
+    await Customer.sync({ alter: true }); // Use 'alter: true' to update the schema without dropping data
+
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

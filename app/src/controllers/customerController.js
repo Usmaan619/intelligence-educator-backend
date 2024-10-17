@@ -1,8 +1,9 @@
+const express = require("express");
 const Customer = require("../models/customerModel");
 
 const router = express();
 // Create a new customer
-router.post("/createCustomer", async (req, res, next) => {
+router.post("/create", async (req, res, next) => {
   try {
     const customer = await Customer.create(req.body);
     res.status(201).json(customer);
