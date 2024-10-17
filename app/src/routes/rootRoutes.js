@@ -1,11 +1,11 @@
 const express = require("express");
 const { errorHandler } = require("../utils/errorHandler");
-const { authMiddleware } = require("../middleware/authMiddleware");
-const { getCustomerById } = require("../controllers/customerController");
 
 const router = express.Router();
 
-router.use("/customer", require("../controllers/customerController"));
+router.use("/c", require("../controllers/feedbackController"));
+router.use("/f", require("../controllers/coursesController"));
+
 
 // catch api all errors
 router.use(errorHandler);

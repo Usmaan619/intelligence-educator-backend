@@ -6,7 +6,8 @@ const helmet = require("helmet");
 const passport = require("passport");
 const rootRoutes = require("./app/src/routes/rootRoutes");
 const { connectToDatabase } = require("./app/config/db");
-const Customer = require("./app/src/models/customerModel");
+const Feedback = require("./app/src/models/feedbackModel");
+const Course = require("./app/src/models/courseModal");
 
 const app = express();
 app.use(helmet());
@@ -30,7 +31,8 @@ async function startServer() {
     await connectToDatabase();
 
     // Sync the Customer model (or all models)
-    await Customer.sync({ alter: true }); // Use 'alter: true' to update the schema without dropping data
+    // await Feedback.sync({ alter: true }); // Use 'alter: true' to update the schema without dropping data
+    // await Course.sync({ alter: true }); // Use 'alter: true' to update the schema without dropping data
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
